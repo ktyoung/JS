@@ -55,27 +55,39 @@
           alert("비밀번호 길이 짧음.");
         }
       });
-
-      // input에 입력한 값이 변할 때마다 일어나는 input, change 이벤트
-      // input 이벤트는 실시간, change 이벤트는 마우스 blur 했을 때 발생
-      document
-        .querySelectorAll(".form-control")[0]
-        .addEventListener("change", function () {
-          console.log("값 변경됨");
-        });
-
-      // 조건식 작성 시 ==와 ===의 차이?
-      // === 는 타입까지 검사함 1 === '1' → false
     </script>
 
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
+        <span class="badge bg-dark">Dark 🔄</span>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </nav>
+
+    <script>
+      // 변수
+      // let : 재선언 불가
+      // const : 재선언, 재할당 불가 == 상수
+      var badge = document.querySelector(".badge");
+      var count = 0;
+      badge.addEventListener("click", function () {
+        count++;
+        if (count % 2 == 0) {
+          badge.innerHTML = "Dark 🔄";
+          badge.classList.remove("bg-light");
+          badge.classList.add("bg-dark");
+          badge.style.color = "white";
+        } else {
+          badge.innerHTML = "Light 🔄";
+          badge.classList.remove("bg-dark");
+          badge.classList.add("bg-light");
+          badge.style.color = "black";
+        }
+      });
+    </script>
 
     <ul class="list-group">
       <li class="list-group-item">An item</li>
@@ -88,6 +100,10 @@
     <div class="main-bg">
       <h4>Shirts on Sale</h4>
       <button class="btn btn-danger" id="login">로그인</button>
+    </div>
+
+    <div id="event" class="alert alert-danger">
+      <span>5</span>초 후에 사라짐
     </div>
 
     <script>
@@ -103,6 +119,20 @@
         .addEventListener("click", function () {
           document.querySelector(".list-group").classList.toggle("show");
         });
+
+      // setTimeout 일정 시간 후에 코드를 실행
+      setTimeout(function () {
+        document.querySelector("#event").style.display = "none";
+      }, 5000);
+      // setInterval 일정 시간마다 코드를 실행
+      var count = 5;
+      var timer = setInterval(function () {
+        count--;
+        document.querySelector("#event").children[0].innerHTML = count;
+        if (count == 0) {
+          clearInterval(timer);
+        }
+      }, 1000);
     </script>
   </body>
 </html>
