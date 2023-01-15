@@ -4,12 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1 id="hello">안녕하세요</h1>
+    <div id="alert" class="alert-box">
+      <p class="title">텍스트입니다.</p>
+      <button class="close">닫기</button>
+    </div>
+
+    <button onclick="displayFunc('block', '아이디')">버튼1</button>
+    <button onclick="displayFunc('block', '비밀번호')">버튼2</button>
+
     <script>
-      document.getElementById("hello").innerHTML = "안녕";
+      // 이벤트 리스너 == 감시자
+      // 클릭, 스크롤, 키입력 등의 이벤트가 발생하면 → 입력한 함수를 실행
+      document
+        .getElementsByClassName("close")[0]
+        .addEventListener("click", function () {
+          document.getElementById("alert").style.display = "none";
+        });
+
+      function displayFunc(attr, text) {
+        document.getElementById("alert").style.display = attr;
+        // ClassName은 인덱싱을 해야함
+        document.getElementsByClassName("title")[0].innerHTML = text;
+      }
     </script>
   </body>
 </html>
