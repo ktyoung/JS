@@ -12,3 +12,11 @@
   background-color: inherit;
   color: white;
 }
+
+.list-group {
+  display: none;
+}
+
+.show {
+  display: block;
+}
