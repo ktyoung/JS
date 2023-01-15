@@ -14,7 +14,11 @@
 }
 
 .list-group {
-  visibility: hidden;
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 .black-bg {
@@ -26,7 +30,7 @@
   padding: 30px;
   visibility: hidden;
   opacity: 0;
-  transition: all 1s;
+  transition: all 0.5s;
 }
 .white-bg {
   background: white;
@@ -34,7 +38,12 @@
   padding: 30px;
 }
 
-.show {
+.show-modal {
   visibility: visible;
   opacity: 1;
+}
+
+.main-bg {
+  padding: 100px 20px;
+  background-color: lightgray;
 }
