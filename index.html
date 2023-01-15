@@ -55,6 +55,17 @@
           alert("비밀번호 길이 짧음.");
         }
       });
+
+      // input에 입력한 값이 변할 때마다 일어나는 input, change 이벤트
+      // input 이벤트는 실시간, change 이벤트는 마우스 blur 했을 때 발생
+      document
+        .querySelectorAll(".form-control")[0]
+        .addEventListener("change", function () {
+          console.log("값 변경됨");
+        });
+
+      // 조건식 작성 시 ==와 ===의 차이?
+      // === 는 타입까지 검사함 1 === '1' → false
     </script>
 
     <nav class="navbar navbar-light bg-light">
