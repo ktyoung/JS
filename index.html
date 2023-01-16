@@ -41,6 +41,16 @@
     </div>
 
     <script>
+      document
+        .querySelector(".black-bg")
+        .addEventListener("click", function (e) {
+          if (e.target == document.querySelector(".black-bg")) {
+            document.querySelector(".black-bg").classList.remove("show-modal");
+          }
+        });
+    </script>
+
+    <script>
       document.querySelector("form").addEventListener("submit", function (e) {
         if (document.querySelectorAll(".form-control")[0].value == "") {
           e.preventDefault();
@@ -84,15 +94,7 @@
     </nav>
 
     <script>
-      // 스크롤을 100px 내리면 로고의 폰트 사이즈 줄이기
       window.addEventListener("scroll", function () {
-        // 스크롤바를 얼마나 내렸는지 px 단위로 표현
-        // window.scrollY;
-        // 강제로 스크롤하기
-        // window.scrollTo(0, 100);
-        // 현재 위치에서 강제로 스크롤 (페이지 이동 버튼 등에 활용)
-        // window.scrollBy(0, 100);
-
         if (window.scrollY > 100) {
           document
             .querySelector(".navbar-brand")
@@ -152,22 +154,13 @@
     </div>
 
     <script>
-      // (참고) 현재 html의 전체 높이는
-      // document.documentElement.scrollHeight;
-      // document.querySelector('html').clientHeight;
       document.querySelector(".lorem").addEventListener("scroll", function () {
-        // div 스크롤바 내린 px은 div에 스크롤 이벤트 부착하고 scrollTop
         var scrollY = parseInt(document.querySelector(".lorem").scrollTop);
-        // 현재 보이는 div 높이
         var divCurrent = parseInt(
           document.querySelector(".lorem").clientHeight
         );
-        // div 실제 높이는 셀렉터.scrollHeight
         var divHeight = parseInt(document.querySelector(".lorem").scrollHeight);
 
-        console.log(scrollY, divCurrent, divHeight);
-
-        // div의 스크롤 바 내린 px + 현재 보이는 div 높이 == div의 실제 높이 - 여유 높이(5px 정도)
         if (scrollY + divCurrent > divHeight - 5) {
           alert("약관을 읽었습니다.");
           document
