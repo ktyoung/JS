@@ -54,6 +54,22 @@
           e.preventDefault();
           alert("비밀번호 길이 짧음.");
         }
+
+        var email_reg =
+          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        var email_input = document.querySelectorAll(".form-control")[0].value;
+        var pw_reg = /[A-Z]/;
+        var pw_input = document.querySelectorAll(".form-control")[1].value;
+        if (email_reg.test(email_input)) {
+          e.preventDefault();
+          alert("이메일 형식입니다.");
+        } else if (pw_reg.test(pw_input) == false) {
+          e.preventDefault();
+          alert("영어 대문자 1글자를 포함해야 합니다.");
+        } else {
+          e.preventDefault();
+          alert("이메일 형식이 아닙니다.");
+        }
       });
     </script>
 
@@ -68,9 +84,28 @@
     </nav>
 
     <script>
-      // 변수
-      // let : 재선언 불가
-      // const : 재선언, 재할당 불가 == 상수
+      // 스크롤을 100px 내리면 로고의 폰트 사이즈 줄이기
+      window.addEventListener("scroll", function () {
+        // 스크롤바를 얼마나 내렸는지 px 단위로 표현
+        // window.scrollY;
+        // 강제로 스크롤하기
+        // window.scrollTo(0, 100);
+        // 현재 위치에서 강제로 스크롤 (페이지 이동 버튼 등에 활용)
+        // window.scrollBy(0, 100);
+
+        if (window.scrollY > 100) {
+          document
+            .querySelector(".navbar-brand")
+            .classList.add("navbar-scroll");
+        } else {
+          document
+            .querySelector(".navbar-brand")
+            .classList.remove("navbar-scroll");
+        }
+      });
+    </script>
+
+    <script>
       var badge = document.querySelector(".badge");
       var count = 0;
       badge.addEventListener("click", function () {
@@ -106,6 +141,44 @@
       <span>5</span>초 후에 사라짐
     </div>
 
+    <div class="lorem" style="width: 100%; height: 100px; overflow-y: scroll">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas
+      voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat
+      sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+      praesentium exercitationem. Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis
+      at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis,
+      eligendi quae consectetur praesentium exercitationem.
+    </div>
+
+    <script>
+      // (참고) 현재 html의 전체 높이는
+      // document.documentElement.scrollHeight;
+      // document.querySelector('html').clientHeight;
+      document.querySelector(".lorem").addEventListener("scroll", function () {
+        // div 스크롤바 내린 px은 div에 스크롤 이벤트 부착하고 scrollTop
+        var scrollY = parseInt(document.querySelector(".lorem").scrollTop);
+        // 현재 보이는 div 높이
+        var divCurrent = parseInt(
+          document.querySelector(".lorem").clientHeight
+        );
+        // div 실제 높이는 셀렉터.scrollHeight
+        var divHeight = parseInt(document.querySelector(".lorem").scrollHeight);
+
+        console.log(scrollY, divCurrent, divHeight);
+
+        // div의 스크롤 바 내린 px + 현재 보이는 div 높이 == div의 실제 높이 - 여유 높이(5px 정도)
+        if (scrollY + divCurrent > divHeight - 5) {
+          alert("약관을 읽었습니다.");
+          document
+            .querySelector(".lorem")
+            .removeEventListener("scroll", arguments.callee, false);
+        }
+      });
+    </script>
+
+    <div style="height: 1000px"></div>
+
     <script>
       document.querySelector("#login").addEventListener("click", function () {
         document.querySelector(".black-bg").classList.add("show-modal");
@@ -120,11 +193,10 @@
           document.querySelector(".list-group").classList.toggle("show");
         });
 
-      // setTimeout 일정 시간 후에 코드를 실행
       setTimeout(function () {
         document.querySelector("#event").style.display = "none";
       }, 5000);
-      // setInterval 일정 시간마다 코드를 실행
+
       var count = 5;
       var timer = setInterval(function () {
         count--;
@@ -133,6 +205,42 @@
           clearInterval(timer);
         }
       }, 1000);
+    </script>
+
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="/img/car1.png" alt="이미지1" />
+        </div>
+        <div class="slide-box">
+          <img src="/img/car2.png" alt="이미지1" />
+        </div>
+        <div class="slide-box">
+          <img src="/img/car3.png" alt="이미지1" />
+        </div>
+      </div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+
+    <script>
+      var current = 1;
+      document.querySelector(".slide-1").addEventListener("click", function () {
+        current = 1;
+        document.querySelector(".slide-container").style.transform =
+          "translateX(0vw)";
+      });
+      document.querySelector(".slide-2").addEventListener("click", function () {
+        current = 2;
+        document.querySelector(".slide-container").style.transform =
+          "translateX(-100vw)";
+      });
+      document.querySelector(".slide-3").addEventListener("click", function () {
+        current = 3;
+        document.querySelector(".slide-container").style.transform =
+          "translateX(-200vw)";
+      });
     </script>
   </body>
 </html>
