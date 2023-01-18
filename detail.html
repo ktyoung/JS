@@ -80,5 +80,67 @@
       </div>
     </div>
     <script src="tab.js"></script>
+
+    <form class="container my-5 form-group">
+      <p>상품선택</p>
+      <select class="form-select mt-2 main-option">
+        <option>모자</option>
+        <option>셔츠</option>
+        <option>바지</option>
+      </select>
+      <select class="form-select mt-2 sub-option" style="display: none">
+        <option>95</option>
+        <option>100</option>
+        <option>105</option>
+      </select>
+    </form>
+    <script>
+      var shirt = [95, 100, 105];
+      var pants = [28, 30, 32, 34];
+
+      $(".form-select")
+        .eq(0)
+        .on("input", function () {
+          var value = $(".form-select").eq(0).val();
+          if (value == "셔츠") {
+            $(".form-select").eq(1).css("display", "block");
+            $(".form-select").eq(1).html("");
+            shirt.forEach((size) => {
+              $(".form-select")
+                .eq(1)
+                .append("<option>" + size + "</option>");
+            });
+          } else if (value == "바지") {
+            $(".form-select").eq(1).css("display", "block");
+            $(".form-select").eq(1).html("");
+            pants.forEach((size, i) => {
+              $(".form-select")
+                .eq(1)
+                .append("<option>" + size + "</option>");
+            });
+          } else {
+            $(".form-select").eq(1).css("display", "none");
+          }
+        });
+
+      var obj = { name: "kim", age: 20 };
+      for (var key in obj) {
+        console.log(obj[key]);
+      }
+    </script>
+
+    <div id="test"></div>
+    <script>
+      // 자바스크립트로 html 생성
+      // 방법 1.
+      var a = document.createElement("p");
+      a.innerHTML = "안녕";
+      document.querySelector("#test").appendChild(a);
+
+      // 방법 2.
+      var b = "<p>하세요<p>";
+      // 문자형 HTML 삽입해주는 insertAdjacentHTML() 함수
+      document.querySelector("#test").insertAdjacentHTML("beforeend", b);
+    </script>
   </body>
 </html>
