@@ -160,19 +160,12 @@
     </script>
 
     <script>
-      // array 자료에서 원하는 것만 필터링 하려면 .filter()
-      // → 활용 예) 특정 가격의 상품만 조회하기
-      // 1. 파라미터에 array의 데이터가 저장됨
-      // 2. return "조건식"
-      // 3. 결과는 변수에 담아 사용 (sort와 달리 원본을 변형하지 않음)
       var arr1 = [7, 3, 5, 2, 40];
       var filterArr = arr1.filter(function (data) {
         return data < 4;
       });
       console.log(filterArr);
 
-      // array 자료를 전부 변형하려면 .map()
-      // → 활용 예) 달러를 원화로 수정하기
       var mapArr = arr1.map(function (data) {
         return data * 4;
       });
