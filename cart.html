@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>장바구니 페이지</div>
+
+    <script>
+      var my_item = localStorage.getItem("cart");
+      my_item = JSON.parse(my_item);
+      var item_cnt = my_item.length;
+      for (let i = 0; i < item_cnt; i++) {
+        var item_title = `<p>${my_item[i]}</p>`;
+        document.body.insertAdjacentHTML("beforeend", item_title);
+      }
+    </script>
+  </body>
+</html>
