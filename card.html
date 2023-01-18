@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="card.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+      integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="card-background">
+      <div class="card-box">
+        <img src="img/card1.png" />
+      </div>
+      <div class="card-box">
+        <img src="img/card2.png" />
+      </div>
+      <div class="card-box">
+        <img src="img/card3.png" />
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        var scrollY = window.scrollY;
+        var card_box = document.querySelectorAll(".card-box");
+        console.log(scrollY);
+        var y = (-1 / 500) * scrollY + 115 / 50;
+        var z = (-1 / 5000) * scrollY + 565 / 500;
+        if (scrollY > 650) {
+          card_box[0].style.opacity = y;
+          card_box[0].style.transform = `scale(${z})`;
+        }
+      });
+    </script>
+  </body>
+</html>
